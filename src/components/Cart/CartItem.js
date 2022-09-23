@@ -2,12 +2,13 @@ import { any, exact, func, number, string } from 'prop-types';
 import styled from 'styled-components/macro';
 import { Counter } from 'components';
 import { currencyKR } from 'utils';
+import {useCart} from '../../contents/cart';
 
 export default function CartItem({
   product: { id, photo, name, price, amount, maxAmount },
-  onUpdate,
   ...restProps
 }) {
+  const cart = useCart();
   return (
     <Container {...restProps}>
       <Photo src={photo} alt="" />
@@ -22,7 +23,7 @@ export default function CartItem({
           current={amount}
           max={maxAmount > 0 ? maxAmount : 50}
           style={{ transform: 'scale(0.75)' }}
-          onUpdate={(count) => onUpdate(id, count)}
+          onUpdate={(count) => cart.onUpdate(id, count)}
         />
       </Amount>
     </Container>
