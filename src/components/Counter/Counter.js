@@ -15,7 +15,6 @@ export function Counter({
   ...restProps
 }) {
   const [count, setCount] = useState(Number(current));
-  const {product}
 
   useEffect(() => {
     onUpdate?.(count);
